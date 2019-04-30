@@ -60,5 +60,16 @@ router.post('/form', (req, res) => {
     });
 });
 
+router.get('/test', (req, res) => {
+  Form.find()
+    .then((result) => {
+      console.log(result)
+      res.render('test', { arrenha: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 
 module.exports = router;
