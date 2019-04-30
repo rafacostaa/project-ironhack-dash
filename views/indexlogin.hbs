@@ -1,21 +1,25 @@
+{{#if message}}
+    <div class="error-message">{{ message }}</div>
+{{/if}}
+
 <div class="text-center body-login">
-    <form class="form-signin form-container">
+    <form class="form-signin form-container" action="/" method="POST">
         <img class="mb-4" src="./images/logoIronHack.png" alt="logo IronHack" width="80px" height="80px">
 
         <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
         
         <div class="inputs-login">
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control input-control" placeholder="Email address" required autofocus>
+            <label for="inputusername" class="sr-only">Username</label>
+            <input name="username" type="text" id="inputusername" class="form-control input-control" placeholder="Username" required autofocus>
         </div>    
         
         <div class="inputs-login">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control input-control" placeholder="Password" required>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" name="password" id="inputPassword" class="form-control input-control" placeholder="Password" required>
         </div>                
         <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
         <a>Do you already have an account?</a>                                     
-        <a href="#">Sign up</a>
+        <a href="/signup">Sign up</a>
 
     </form>
 </div>
