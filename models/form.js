@@ -9,7 +9,6 @@ const formSchema = new Schema({
     questionText: String,
     answerText: String,
   },
-  tools: String,
   journal: String,
   usedTools: {
     htmlRange: Number,
@@ -22,8 +21,8 @@ const formSchema = new Schema({
 },
 {
   timestamps: {
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
+    createdAt: true,
+    updatedAt: true,
   },
 });
 

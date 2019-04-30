@@ -26,10 +26,10 @@ router.get('/form', (req, res, next) => {
 
 /* POST form page */
 router.post('/form', (req, res) => {
-  const { codingStatus, getBetter, questionText, answerText, tools, journal, htmlRange, cssRange, jsRange, mongoRange, reactRange, user, timestamps } = req.body;
+  const { codingStatus, getBetter, questionText, answerText, journal, htmlRange, cssRange, jsRange, mongoRange, reactRange, user, timestamps } = req.body;
   const questAns = { questionText, answerText };
   const usedTools = { htmlRange, cssRange, jsRange, mongoRange, reactRange }
-  const newForm = new Form ({ codingStatus, getBetter, questAns, tools, journal, usedTools, user, timestamps });
+  const newForm = new Form ({ codingStatus, getBetter, questAns, journal, usedTools, user, timestamps });
   newForm.save()
     .then(() => {
       res.redirect('/home');
