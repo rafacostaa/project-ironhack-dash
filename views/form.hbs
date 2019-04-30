@@ -6,19 +6,19 @@
   </h3>
   <section class="radio-form">
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+        <input class="form-check-input" type="radio" name="codingStatus" id="inlineRadio1" value="1">
         <label class="form-check-label" for="inlineRadio1">Baby Coder</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+        <input class="form-check-input" type="radio" name="codingStatus" id="inlineRadio2" value="2">
         <label class="form-check-label" for="inlineRadio2">Horse Coder</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option2">
+        <input class="form-check-input" type="radio" name="codingStatus" id="inlineRadio3" value="3">
         <label class="form-check-label" for="inlineRadio3">Code Warrior</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option2">
+        <input class="form-check-input" type="radio" name="codingStatus" id="inlineRadio4" value="4">
         <label class="form-check-label" for="inlineRadio4">Code Master</label>
       </div>
     </section>
@@ -26,16 +26,16 @@
   <h3>
     <label for="form-control">Now you need to get better in: </label>
   </h3>
-  <select class="form-control">
-    <option class="selector-text">HTML</option>
-    <option class="selector-text">CSS</option>
-    <option class="selector-text">JS</option>
-    <option class="selector-text">MONGODB</option>
-    <option class="selector-text">REACT</option>
-    <option class="selector-text">ES6</option>
-    <option class="selector-text">NODE</option>
-    <option class="selector-text">EXPRESS</option>
-    <option class="selector-text">AJAX</option>
+  <select name="getBetter" class="form-control" >
+    <option value="HTML" class="selector-text">HTML</option>
+    <option value="CSS" class="selector-text">CSS</option>
+    <option value="JS" class="selector-text">JS</option>
+    <option value="MONGODB" class="selector-text">MONGODB</option>
+    <option value="REACT" class="selector-text">REACT</option>
+    <option value="ES6" class="selector-text">ES6</option>
+    <option value="NODE" class="selector-text">NODE</option>
+    <option value="EXPRESS" class="selector-text">EXPRESS</option>
+    <option value="AJAX" class="selector-text">AJAX</option>
   </select>
 
   <div class="form-group">
@@ -43,8 +43,8 @@
       <label class="label-text" for="exampleFormControlTextarea1">Good questions make you learn faster. Create a very good one for today and answer it.
       </label>
     </h3>
-      <textarea class="form-control" id="question-text" placeholder="Your Question" rows="3"></textarea>
-      <textarea class="form-control" id="answer-text" placeholder="Your Answer" rows="3"></textarea>
+      <textarea class="form-control" name="questionText" placeholder="Your Question" rows="3"></textarea>
+      <textarea class="form-control" name="answerText" placeholder="Your Answer" rows="3"></textarea>
   </div>
 
   <div id="tool-usage">
@@ -54,23 +54,23 @@
     </h3>
     <div class="range_tools">
       <label for="customRange2">HTML</label>
-      <input type="range" class="custom-range" min="0" max="5" id="html_range">
+      <input type="range" class="custom-range" name="htmlRange" min="0" max="5" >
     </div>
     <div class="range_tools">
       <label for="customRange2">CSS</label>
-      <input type="range" class="custom-range" min="0" max="5" id="css_range">
+      <input type="range" class="custom-range" name="cssRange" min="0" max="5" >
     </div>
     <div class="range_tools">
       <label for="customRange2">JavaScript</label>
-      <input type="range" class="custom-range" min="0" max="5" id="js_range">
+      <input type="range" class="custom-range" name="jsRange" min="0" max="5" >
     </div>
     <div class="range_tools">
       <label for="customRange2">Mongo</label>
-      <input type="range" class="custom-range" min="0" max="5" id="mongo_range">
+      <input type="range" class="custom-range" name="mongoRange" min="0" max="5" >
     </div>
     <div class="range_tools">
       <label for="customRange2">React</label>
-      <input type="range" class="custom-range" min="0" max="5" id="react_range">
+      <input type="range" class="custom-range" name="reactRange" min="0" max="5" >
     </div>
 
   <div class="form-group">
@@ -79,7 +79,7 @@
         Sometimes our thoughts can frighten us. Write them down and make your mind free!.
       </label>
     </h3>
-    <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+    <textarea class="form-control" name="journal" rows="3"></textarea>
   </div>
   <button id="submit-btn" class="btn btn-primary btn-lg" type="submit">Submit</button>   
 </form>
