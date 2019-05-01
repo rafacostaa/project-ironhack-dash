@@ -15,67 +15,96 @@ router.get('/', (req, res) => {
 //   // res.render('indexsignup', { layout: 'layout-login-signup.hbs' });
 // });
 
+
+router.get('/private', ensureAuthenticated, (req, res) => {
+  res.render('private', {user: req.user});
+});
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
+}
+
 /* GET home page */
-router.get('/home', (req, res) => {
-  res.render('home');
+router.get('/home', ensureAuthenticated, (req, res) => {
+  res.render('home', { user: req.user });
 });
 
 /* GET form page */
-router.get('/form', (req, res) => {
-  res.render('form');
+router.get('/form', ensureAuthenticated, (req, res) => {
+  // console.log(req.user);
+  res.render('form', { user: req.user });
 });
 
 /* GET account page */
-router.get('/account', (req, res, next) => {
-  res.render('account');
+router.get('/account', ensureAuthenticated, (req, res, next) => {
+  res.render('account', { user: req.user });
 });
 
 /* GET timeline page */
-router.get('/timeline', (req, res) => {
-  res.render('timeline');
+router.get('/timeline', ensureAuthenticated, (req, res) => {
+  res.render('timeline', { user: req.user });
 });
 
 
 /* GET account page */
-router.get('/flashcard', (req, res, next) => {
-  res.render('flashcard');
+router.get('/flashcard', ensureAuthenticated, (req, res, next) => {
+  res.render('flashcard', { user: req.user });
 });
 
+/* GET journal page */
+router.get('/journal', ensureAuthenticated, (req, res) => {
+  Form.find()
+    .then((result) => {
+      res.render('journal', { obj: result }, { user: req.user });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// /* GET home page */
+// router.get('/home', (req, res) => {
+  //   res.render('home');
+  // });
+  
+  // /* GET form page */
+  // router.get('/form', (req, res) => {
+    //   res.render('form');
+    // });
+    
+// /* GET account page */
+// router.get('/account', (req, res, next) => {
+//   res.render('account');
+// });
+
+// /* GET timeline page */
+// router.get('/timeline', (req, res) => {
+//   res.render('timeline');
+// });
+
+
+// /* GET account page */
+// router.get('/flashcard', (req, res, next) => {
+//   res.render('flashcard');
+// });
+
 /* POST form page */
-router.post('/form', (req, res) => {
-  const { codingStatus, getBetter, questionText, answerText, journal, htmlRange, cssRange, jsRange, mongoRange, reactRange, user, timestamps } = req.body;
+router.post('/form', ensureAuthenticated, (req, res) => {
+  console.log(req.user);
+  const user = req.user._id;
+  const { codingStatus, getBetter, questionText, answerText, journal, htmlRange, cssRange, jsRange, mongoRange, reactRange, timestamps } = req.body;
   const questAns = { questionText, answerText };
   const usedTools = { htmlRange, cssRange, jsRange, mongoRange, reactRange }
   const newForm = new Form({ codingStatus, getBetter, questAns, journal, usedTools, user, timestamps });
   newForm.save()
     .then(() => {
-      res.redirect('/home');
+      res.render('home', { user: req.user });
     })
     .catch((error) => {
       console.log(error);
-    });
-});
-
-
-/* GET journal page */
-
-router.get('/journal', (req, res) => {
-  Form.find()
-    .then((result) => {
-      res.render('journal', { obj: result });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-router.get('/test', (req, res) => {
-  Form.find()
-    .then((result) => {
-      res.render('test', { arrenha: result });
-    })
-    .catch((err) => {
-      console.log(err);
     });
 });
 
