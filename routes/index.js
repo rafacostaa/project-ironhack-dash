@@ -19,6 +19,24 @@ router.get('/', (req, res) => {
 router.get('/home', (req, res) => {
   res.render('home');
 });
+  // Form.find()
+  //   .then((result) => {
+  //    switch(result[0].codingStatus) {
+  //      case 0 : document.getElementById('code-phrase').innerHtml = 'Baby coder => “ Now baby you are, persist and master will be."'
+  //    }
+    // })
+    //   res.render('journal', { obj: result });
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    // });
+  // const babyCoder = 'Baby coder => “ Now baby you are, persist and master will be."';
+  // const horseCoder = 'Horse Coder => “ Hard is to be a horse in a word of horseman. "';
+  // const codeWarrior = 'Code Warrior => “ A calm mind make a better warrior. "';
+  // const codeMaster = ' Code Master => “ Humbleness and learning are the master powerfull skill. "';
+  // const coderPhrase = document.getElementById('code-phrase');
+
+
 
 /* GET form page */
 router.get('/form', (req, res) => {
@@ -32,7 +50,13 @@ router.get('/account', (req, res, next) => {
 
 /* GET timeline page */
 router.get('/timeline', (req, res) => {
-  res.render('timeline');
+  Form.find()
+    .then((result) => {
+      res.render('timeline', { obj: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 
@@ -69,15 +93,7 @@ router.get('/journal', (req, res) => {
     });
 });
 
-router.get('/test', (req, res) => {
-  Form.find()
-    .then((result) => {
-      res.render('test', { arrenha: result });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+
 
 
 module.exports = router;
