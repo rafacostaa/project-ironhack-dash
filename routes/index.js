@@ -4,6 +4,8 @@ const router = express.Router();
 
 const Form = require('../models/form.js');
 
+const Qa = require('../models/qa.js');
+
 /* GET log in page */
 router.get('/', (req, res) => {
   res.render('indexlogin', { layout: 'layout-login-signup.hbs' });
@@ -30,15 +32,40 @@ function ensureAuthenticated(req, res, next) {
 /* GET home page */
 router.get('/home', ensureAuthenticated, (req, res) => {
   Form.find({ user: req.user._id})
-  .then((result) => {
-    console.log(result)
-    res.render('home', { obj: result });
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-  res.render('home', { user: req.user });
+    .then((result) => {
+      const arrHtml = [];
+      result.forEach((element) => {
+        arrHtml.push(element.usedTools.htmlRange);
+      });
+      const arrCSS = [];
+      result.forEach((element) => {
+        arrCSS.push(element.usedTools.cssRange);
+      });
+      const arrJS = [];
+      result.forEach((element) => {
+        arrJS.push(element.usedTools.jsRange);
+      });
+      const arrMongo = [];
+      result.forEach((element) => {
+        arrMongo.push(element.usedTools.mongoRange);
+      });
+      const arrReact = [];
+      result.forEach((element) => {
+        arrReact.push(element.usedTools.reactRange);
+      });
+      console.log('TESSSSSTE', arrReact);
+      const status = result[result.length - 1].codingStatus;
+      console.log('>>>>>>>>>>>>>>>>>>', status);
+      res.render('home', { obj: result, phrase: status });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
+
+
+
+
   // Form.find()
   //   .then((result) => {
   //    switch(result[0].codingStatus) {
@@ -61,18 +88,18 @@ router.get('/home', ensureAuthenticated, (req, res) => {
 /* GET form page */
 router.get('/form', ensureAuthenticated, (req, res) => {
   console.log(req.user);
-  res.render('form', { user: req.user });
+  res.render('form');
 });
 
 /* GET account page */
 router.get('/account', ensureAuthenticated, (req, res, next) => {
-  res.render('account', { user: req.user });
+  res.render('account');
 });
 
 /* GET timeline page */
 router.get('/timeline', (req, res) => {
   Form.find()
-    .populate('user')
+    // .populate('user')
     .then((result) => {
      // console.log(result)
       res.render('timeline', { form: result });
@@ -85,14 +112,20 @@ router.get('/timeline', (req, res) => {
 
 /* GET account page */
 router.get('/flashcard', ensureAuthenticated, (req, res, next) => {
-  res.render('flashcard', { user: req.user });
+  Qa.find({ user: req.user._id})
+    .then((result) => {
+      console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$', result);
+      res.render('flashcard', { obj: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 /* GET journal page */
 router.get('/journal', ensureAuthenticated, (req, res) => {
   Form.find({ user: req.user._id})
     .then((result) => {
-      console.log(result)
       res.render('journal', { obj: result });
     })
     .catch((err) => {
@@ -137,7 +170,23 @@ router.post('/form', ensureAuthenticated, (req, res) => {
   const newForm = new Form({ codingStatus, getBetter, questAns, journal, usedTools, user, timestamps });
   newForm.save()
     .then(() => {
-      res.render('home');//{ user: req.user });
+      res.redirect('home');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
+/* POST FlashCard page */
+router.post('/flashcard', ensureAuthenticated, (req, res) => {
+  console.log(req.user);
+  const user = req.user._id;
+  const { questionText, answerText, timestamps } = req.body;
+  const questAns = { questionText, answerText };
+  const newForm = new Qa({ questAns, user, timestamps });
+  newForm.save()
+    .then(() => {
+      res.redirect('/flashcard');
     })
     .catch((error) => {
       console.log(error);
