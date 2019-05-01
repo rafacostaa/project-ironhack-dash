@@ -4,6 +4,8 @@ const router = express.Router();
 
 const Form = require('../models/form.js');
 
+const User = require('../models/user.js');
+
 /* GET log in page */
 router.get('/', (req, res) => {
   res.render('indexlogin', { layout: 'layout-login-signup.hbs' });
@@ -16,9 +18,9 @@ router.get('/', (req, res) => {
 // });
 
 
-router.get('/private', ensureAuthenticated, (req, res) => {
-  res.render('private', {user: req.user});
-});
+// router.get('/private', ensureAuthenticated, (req, res) => {
+//   res.render('private', { user: req.user });
+// });
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
@@ -28,19 +30,49 @@ function ensureAuthenticated(req, res, next) {
 }
 
 /* GET home page */
+// router.get('/home/:id', ensureAuthenticated, (req, res) => {
+//   let userId = req.params.id;
+//   console.log(req.user, userId);
+//   User.findOne({'_id': userId})
+//   .populate('user')
+//   .then(x => {
+//     if (!x) {
+//         return res.status(404).render('not-found');
+//     }
+//     res.render("home", { x })
+//   })
+//   .catch(next)
+// });
+
+/* GET home page */
 router.get('/home', ensureAuthenticated, (req, res) => {
+
+  console.log(req.user);
   res.render('home', { user: req.user });
+  // User.findById()
+  //   .then((result) => {
+  //     res.render('home', { banana: result });
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 });
+
 
 /* GET form page */
 router.get('/form', ensureAuthenticated, (req, res) => {
-  // console.log(req.user);
+  console.log(req.user.firstName);
   res.render('form', { user: req.user });
 });
 
 /* GET account page */
 router.get('/account', ensureAuthenticated, (req, res, next) => {
   res.render('account', { user: req.user });
+});
+
+/* GET account page */
+router.get('/chart', ensureAuthenticated, (req, res, next) => {
+  res.render('chart', { user: req.user });
 });
 
 /* GET timeline page */
@@ -58,7 +90,7 @@ router.get('/flashcard', ensureAuthenticated, (req, res, next) => {
 router.get('/journal', ensureAuthenticated, (req, res) => {
   Form.find()
     .then((result) => {
-      res.render('journal', { obj: result }, { user: req.user });
+      // res.render('journal'), { obj: result }, { user: req.user });
     })
     .catch((err) => {
       console.log(err);

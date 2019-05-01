@@ -11,6 +11,11 @@ body {
   font-family: Roboto,arial,sans-serif;
 }
 
+#chart {
+  max-width: 650px;
+  margin: 35px auto;
+}
+
 .selector-text[type=text] {
   color: rgb(126, 133, 145);
 }

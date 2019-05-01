@@ -3,15 +3,17 @@
     <div class="flex-item">
         <ul>
             <li>Infos</li>
-            <li>Name: Claudinary</li>
+            <li id="name-card">Name: {{user.firstName}}</li>
+            <li id="name-card">Name: {{user.lastName}}</li>
             <li>xxxx:</li>
             <li>yyyy:</li>
             <li>zzzz:</li>
         </ul>
     </div>
-    <div class="flex-item">graf1</div>
-    <div class="flex-item">graf2</div>
-    <div class="flex-item">graf2</div>
+    <div class="flex-item" id="chart"></div>
+    <div class="flex-item" id="chartTwo">graf1</div>
+    <div class="flex-item" id="chartThree">graf2</div>
+    {{!-- <div class="flex-item">graf2</div> --}}
 </ul>
 
 <!-- MAIN BLOCK -->
@@ -48,7 +50,7 @@
     <article class="main">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active font-Roboto" aria-current="page">"Pau que nasce torto nunca se endireita, menina que quebra muito pega na cabeça"</li>
+                <li class="breadcrumb-item active font-Roboto" aria-current="page">{{form.codingStatus}}</li>
             </ol>
         </nav>
         
