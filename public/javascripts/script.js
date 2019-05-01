@@ -64,11 +64,11 @@
 //   }
 // }
 
-let babyCoder = 'Baby coder => “ Now baby you are, persist and master will be."';
-let horseCoder = 'Horse Coder => “ Hard is to be a horse in a word of horseman. "';
-let codeWarrior = 'Code Warrior => “ A calm mind make a better warrior. "';
-let codeMaster = ' Code Master => “ Humbleness and learning are the master powerfull skill. "';
-let coderPhrase = document.getElementById('code-phrase');
+// let babyCoder = 'Baby coder => “ Now baby you are, persist and master will be."';
+// let horseCoder = 'Horse Coder => “ Hard is to be a horse in a word of horseman. "';
+// let codeWarrior = 'Code Warrior => “ A calm mind make a better warrior. "';
+// let codeMaster = ' Code Master => “ Humbleness and learning are the master powerfull skill. "';
+// let coderPhrase = document.getElementById('code-phrase');
 
 
 

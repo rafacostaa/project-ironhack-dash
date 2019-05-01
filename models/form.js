@@ -16,8 +16,8 @@ const formSchema = new Schema({
     jsRange: Number,
     mongoRange: Number,
     reactRange: Number,
-    user: { type: Schema.Types.ObjectId, ref: 'User' },
   },
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
 },
 {
   timestamps: {

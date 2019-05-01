@@ -15,9 +15,29 @@ router.get('/', (req, res) => {
 //   // res.render('indexsignup', { layout: 'layout-login-signup.hbs' });
 // });
 
+
+router.get('/private', ensureAuthenticated, (req, res) => {
+  res.render('private', { user: req.user });
+});
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
+}
+
 /* GET home page */
-router.get('/home', (req, res) => {
-  res.render('home');
+router.get('/home', ensureAuthenticated, (req, res) => {
+  Form.find({ user: req.user._id})
+  .then((result) => {
+    console.log(result)
+    res.render('home', { obj: result });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+  res.render('home', { user: req.user });
 });
   // Form.find()
   //   .then((result) => {
@@ -39,20 +59,23 @@ router.get('/home', (req, res) => {
 
 
 /* GET form page */
-router.get('/form', (req, res) => {
-  res.render('form');
+router.get('/form', ensureAuthenticated, (req, res) => {
+  console.log(req.user);
+  res.render('form', { user: req.user });
 });
 
 /* GET account page */
-router.get('/account', (req, res, next) => {
-  res.render('account');
+router.get('/account', ensureAuthenticated, (req, res, next) => {
+  res.render('account', { user: req.user });
 });
 
 /* GET timeline page */
 router.get('/timeline', (req, res) => {
   Form.find()
+    .populate('user')
     .then((result) => {
-      res.render('timeline', { obj: result });
+     // console.log(result)
+      res.render('timeline', { form: result });
     })
     .catch((err) => {
       console.log(err);
@@ -61,39 +84,65 @@ router.get('/timeline', (req, res) => {
 
 
 /* GET account page */
-router.get('/flashcard', (req, res, next) => {
-  res.render('flashcard');
+router.get('/flashcard', ensureAuthenticated, (req, res, next) => {
+  res.render('flashcard', { user: req.user });
 });
-
-/* POST form page */
-router.post('/form', (req, res) => {
-  const { codingStatus, getBetter, questionText, answerText, journal, htmlRange, cssRange, jsRange, mongoRange, reactRange, user, timestamps } = req.body;
-  const questAns = { questionText, answerText };
-  const usedTools = { htmlRange, cssRange, jsRange, mongoRange, reactRange }
-  const newForm = new Form({ codingStatus, getBetter, questAns, journal, usedTools, user, timestamps });
-  newForm.save()
-    .then(() => {
-      res.redirect('/home');
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-});
-
 
 /* GET journal page */
-
-router.get('/journal', (req, res) => {
-  Form.find()
+router.get('/journal', ensureAuthenticated, (req, res) => {
+  Form.find({ user: req.user._id})
     .then((result) => {
+      console.log(result)
       res.render('journal', { obj: result });
     })
     .catch((err) => {
       console.log(err);
     });
 });
+  
+
+// /* GET home page */
+// router.get('/home', (req, res) => {
+  //   res.render('home');
+  // });
+  
+  // /* GET form page */
+  // router.get('/form', (req, res) => {
+    //   res.render('form');
+    // });
+    
+// /* GET account page */
+// router.get('/account', (req, res, next) => {
+//   res.render('account');
+// });
+
+// /* GET timeline page */
+// router.get('/timeline', (req, res) => {
+//   res.render('timeline');
+// });
 
 
+// /* GET account page */
+// router.get('/flashcard', (req, res, next) => {
+//   res.render('flashcard');
+// });
+
+/* POST form page */
+router.post('/form', ensureAuthenticated, (req, res) => {
+  console.log(req.user);
+  const user = req.user._id;
+  const { codingStatus, getBetter, questionText, answerText, journal, htmlRange, cssRange, jsRange, mongoRange, reactRange, timestamps } = req.body;
+  const questAns = { questionText, answerText };
+  const usedTools = { htmlRange, cssRange, jsRange, mongoRange, reactRange }
+  const newForm = new Form({ codingStatus, getBetter, questAns, journal, usedTools, user, timestamps });
+  newForm.save()
+    .then(() => {
+      res.render('home');//{ user: req.user });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
 
 
 module.exports = router;
