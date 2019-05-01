@@ -5,7 +5,7 @@ const router = express.Router();
 const Form = require('../models/form.js');
 
 /* GET log in page */
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
   res.render('indexlogin', { layout: 'layout-login-signup.hbs' });
 });
 
@@ -16,12 +16,12 @@ router.get('/', (req, res, next) => {
 // });
 
 /* GET home page */
-router.get('/home', (req, res, next) => {
+router.get('/home', (req, res) => {
   res.render('home');
 });
 
 /* GET form page */
-router.get('/form', (req, res, next) => {
+router.get('/form', (req, res) => {
   res.render('form');
 });
 
@@ -31,14 +31,10 @@ router.get('/account', (req, res, next) => {
 });
 
 /* GET timeline page */
-router.get('/timeline', (req, res, next) => {
+router.get('/timeline', (req, res) => {
   res.render('timeline');
 });
 
-/* GET journal page */
-router.get('/timeline/journal', (req, res, next) => {
-  res.render('journal');
-});
 
 /* GET account page */
 router.get('/flashcard', (req, res, next) => {
@@ -50,7 +46,7 @@ router.post('/form', (req, res) => {
   const { codingStatus, getBetter, questionText, answerText, journal, htmlRange, cssRange, jsRange, mongoRange, reactRange, user, timestamps } = req.body;
   const questAns = { questionText, answerText };
   const usedTools = { htmlRange, cssRange, jsRange, mongoRange, reactRange }
-  const newForm = new Form ({ codingStatus, getBetter, questAns, journal, usedTools, user, timestamps });
+  const newForm = new Form({ codingStatus, getBetter, questAns, journal, usedTools, user, timestamps });
   newForm.save()
     .then(() => {
       res.redirect('/home');
@@ -60,10 +56,22 @@ router.post('/form', (req, res) => {
     });
 });
 
+
+/* GET journal page */
+
+router.get('/journal', (req, res) => {
+  Form.find()
+    .then((result) => {
+      res.render('journal', { obj: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 router.get('/test', (req, res) => {
   Form.find()
     .then((result) => {
-      console.log(result)
       res.render('test', { arrenha: result });
     })
     .catch((err) => {
