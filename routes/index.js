@@ -4,8 +4,8 @@ const router = express.Router();
 
 const Form = require('../models/form.js');
 
-const User = require('../models/user.js');
 const Qa = require('../models/qa.js');
+// const User = require('../models/user.js');
 
 /* GET log in page */
 router.get('/', (req, res) => {
@@ -19,9 +19,9 @@ router.get('/', (req, res) => {
 // });
 
 
-// router.get('/private', ensureAuthenticated, (req, res) => {
-//   res.render('private', { user: req.user });
-// });
+router.get('/private', ensureAuthenticated, (req, res) => {
+  res.render('private', { user: req.user });
+});
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
@@ -45,25 +45,25 @@ function ensureAuthenticated(req, res, next) {
 //   .catch(next)
 // });
 
-/* GET home page */
-router.get('/home', ensureAuthenticated, (req, res) => {
+// /* GET home page */
+// router.get('/home', ensureAuthenticated, (req, res) => {
 
-  console.log(req.user);
-  res.render('home', { user: req.user });
-  // User.findById()
-  //   .then((result) => {
-  //     res.render('home', { banana: result });
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-});
+//   console.log(req.user);
+//   res.render('home', { user: req.user });
+//   // User.findById()
+//   //   .then((result) => {
+//   //     res.render('home', { banana: result });
+//   //   })
+//   //   .catch((err) => {
+//   //     console.log(err);
+//   //   });
+// });
 
 
 /* GET form page */
-router.get('/form', ensureAuthenticated, (req, res) => {
-  console.log(req.user.firstName);
-  res.render('form', { user: req.user });
+router.get('/home', ensureAuthenticated, (req, res) => {
+  // console.log(req.user.firstName);
+  // res.render('form', { user: req.user });
   Form.find({ user: req.user._id})
     .then((result) => {
       const arrHtml = [];
