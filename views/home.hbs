@@ -3,20 +3,17 @@
     <div class="flex-item">
         <ul>
             <li>Infos</li>
-            <li id="name-card">Name: {{user.firstName}}</li>
-            <li id="name-card">Name: {{user.lastName}}</li>
-            <li id="name-card">Name: {{user.email}}</li>  
+            <li class="user-data" id="name-card">Name: {{user.firstName}}</li>
+            <li class="user-data" id="name-card">Name: {{user.lastName}}</li>
+            <li class="user-data" id="name-card">Name: {{user.email}}</li>  
         </ul>
     </div>
-    <div class="flex-item" id="chartTwo">
+    <div class="flex-item" id="chart3">
         <h3> I need to get better in</h3>
         <h2>{{tool}}</h2>
     </div>
+    <div class="flex-item" id="chart2"></div>
     <div class="flex-item" id="chart"></div>
-    <div class="flex-item" id="chartTwo">graf1</div>
-    {{!-- <div class="flex-item" id="mychart">graf2</div> --}}
-    {{!-- <canvas id="myChart" width="400" height="400"></canvas> --}}
-    {{!-- <div class="flex-item">graf2</div> --}}
 </ul>
 
 <!-- MAIN BLOCK -->
@@ -24,14 +21,15 @@
 
     <!-- ASIDE 1 -->
     <aside class="aside aside-1">
-        <a class="nav-link font-Roboto" >Menu</a>
+        <a class="menu-link nav-link font-Roboto" >Menu</a>
         <a class="nav-link" href="https://github.com" target="_blank">GitHub</a>
         <a class="nav-link" href="https://www.codewars.com" target="_blank">Codewars</a>
         <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLSe6GB6wMknsOxWTjcWgQhyd_OL2CgTNSTP37qqS4O9JSqM1Sw/viewform" target="_blank">Weekly Review</a>
         <a class="nav-link" href="http://learn.ironhack.com" target="_blank">Learn IronHack</a>
         <a class="nav-link" href="https://drive.google.com/drive/folders/1st-9ajQDPOByGb5pk-i_w0RvYzZpeDhG" target="_blank">Digital Library</a>
+        <br>        
         <div class="btn-group dropright">
-            <button type="button" class="btn btn-secondary dropdown-toggle font-Roboto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="link-button btn btn-secondary dropdown-toggle font-Roboto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Links
             </button>
             <div class="dropdown-menu">
@@ -43,10 +41,10 @@
                 <a class="dropdown-item" href="https://cubo.network/eventos" target="_blank">Cubo</a>
                 <a class="dropdown-item" href="##" target="_blank">xxxx</a>
             </div>
-        </div>
-        <a role="button"  href="/form" class="btn btn-primary font-Roboto">Daily Form</a>        
-        <a role="button"  href="/timeline" class="btn btn-primary font-Roboto">Timeline</a>        
-        <a role="button"  href="/flashcard" class="btn btn-primary font-Roboto">Flashcards</a>        
+        </div>   
+        <a class="margin-buttons btn btn-primary font-Roboto" role="button"  href="/form">Daily Form</a>
+        <a class="margin-buttons btn btn-primary font-Roboto" role="button"  href="/timeline">Timeline</a>        
+        <a class="margin-buttons btn btn-primary font-Roboto" role="button"  href="/flashcard">Flashcards</a>        
     </aside>
     
     <!-- ARTICLE -->
@@ -64,7 +62,7 @@
         <div id="myDIV" class="header">
             <h5 class="font-Roboto">To Do List</h5>
             <input type="text" id="myInput" placeholder="Title...">
-            <span onclick="newElement()" class="addBtn font-Roboto">Add</span>
+            <span onclick="newElement()" class="addBtn badge badge-dark font-Roboto">Add</span>
         </div>
                 
         <ul id="myUL">

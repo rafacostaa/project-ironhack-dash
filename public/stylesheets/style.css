@@ -54,9 +54,6 @@ body {
   margin-bottom: 10%;
   flex-wrap: wrap; }
 
-h3 {
-  /* font-weight: bolder; */ }
-
 .flex-container {
   padding: 0;
   margin: 0;
@@ -88,14 +85,15 @@ h3 {
   height: 550px; }
 
 .aside-1 {
-  background: whitesmoke; }
+  background: whitesmoke;
+  text-align: left; }
 
 .main {
   text-align: left;
   background: rgba(0, 110, 255, 0.459); }
 
 .aside-2 {
-  background: grey; }
+  background: #1e2433; }
 
 /* PRECISA ARRUMAR A RESPONSIVIDADE */
 @media all and (min-width: 600px) {
@@ -124,7 +122,10 @@ h3 {
 
 .flex-item > ul > li {
   list-style-type: none;
-  text-align: center; }
+  text-align: left; }
+
+.flex-item > ul {
+  margin-top: 10px; }
 
 article > nav > ol > li {
   font-style: italic; }
@@ -206,7 +207,8 @@ article > nav > ol > li {
   font-family: Roboto Mono, arial, tahoma, verdana;
   line-height: 20px;
   font-size: 14px;
-  color: #726f77; }
+  color: #726f77;
+  border: 1px solid blue; }
 
 .container-timeline {
   max-width: 1100px;
@@ -389,5 +391,49 @@ article > nav > ol > li {
 .error-message {
   background-color: red;
   color: whitesmoke; }
+
+.list-class {
+  width: 300px; }
+
+.aside-2 > ul {
+  text-align: left;
+  margin-top: 20px; }
+
+.aside-2 > div > input {
+  width: 300px; }
+
+.nav-link, .margin-buttons {
+  margin: 5px; }
+
+.margin-buttons {
+  background-color: #1e2433; }
+
+.margin-buttons:hover {
+  background-color: #0d1018; }
+
+.nav-link {
+  color: #3dc4fc; }
+
+.nav-link:hover {
+  color: #46acd8; }
+
+.link-button {
+  background-color: #3dc4fc; }
+
+.link-button:hover {
+  background-color: #46acd8; }
+
+.addBtn {
+  background-color: #46acd8; }
+
+.navbar {
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between; }
+
+.user-data {
+  color: #1e2433; }
 
 /*# sourceMappingURL=style.css.map */

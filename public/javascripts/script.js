@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('IronGenerator JS imported successfully!');
 }, false);
@@ -61,64 +62,97 @@ function newElement() {
   }
 }
 
+
 // Flash cards.
 
 function showAnswer() {
   document.getElementById('answer-text').style.display = 'block';
 }
 
+// CHARTS
+
+// LOGIC CHART
+function printTheChart(arrHtml, arrCSS, arrJS, arrMongo, arrReact, arrTime) {
+  const options = {
+
+    chart: {
+      height: 350, type: 'bar', stacked: true,
+    },
+    responsive: [{ breakpoint: 480, options: { legend: { position: 'bottom', offsetX: -10, offsetY: 0 } } }],
+    series: [{
+      name: 'HTML',
+      data: arrHtml,
+    }, {
+      name: 'CSS',
+      data: arrCSS,
+    }, {
+      name: 'JS',
+      data: arrJS,
+    }, {
+      name: 'MONGO',
+      data: arrMongo,
+    }, {
+      name: 'REACT',
+      data: arrReact,
+    }],
+
+    xaxis: {
+      categories: arrTime,
+    },
+    fill: {
+      opacity: 1,
+    },
+
+    legend: {
+      position: 'right',
+      offsetX: 0,
+      offsetY: 50,
+    },
+  };
+
+  // CONNECT TO FRONT
+  const chart = new ApexCharts(document.querySelector('#chart'), options);
+
+  chart.render();
+}
 
 
+// ROUTE
 
+window.onload = () => {
+  axios.get('/chart')
+    .then((result) => {
+      // const date = result.data.createdAt;
+      // console.log(date);
+      const arrHtml = [];
+      result.data.forEach((element) => {
+        arrHtml.push(element.usedTools.htmlRange);
+      });
+      const arrCSS = [];
+      result.data.forEach((element) => {
+        arrCSS.push(element.usedTools.cssRange);
+      });
+      const arrJS = [];
+      result.data.forEach((element) => {
+        arrJS.push(element.usedTools.jsRange);
+      });
+      const arrMongo = [];
+      result.data.forEach((element) => {
+        arrMongo.push(element.usedTools.mongoRange);
+      });
+      const arrReact = [];
+      result.data.forEach((element) => {
+        arrReact.push(element.usedTools.reactRange);
+      });
+      const arrTime = [];
+      result.data.forEach((timestamps) => {
+        const date = timestamps.createdAt;
+        arrTime.push(timestamps.createdAt);
+      });
+      printTheChart(arrHtml, arrCSS, arrJS, arrMongo, arrReact, arrTime);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
-
-
-// test chart
-// const options = {
-//   chart: { type: 'bar'},
-//   series: [{ name: 'sales', data: [30, 40, 45, 50, 49, 60, 70, 91, 125] }],
-//   xaxis: { categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999] },
-// };
-// const chart = new ApexCharts(document.querySelector('#chart'), options);
-// chart.render();
-
-
-// const options = {
-//     chart: {
-//       height: 350, type: 'bar', stacked: true, stackType: '100%',
-//     },
-//     responsive: [{ breakpoint: 480, options: { legend: { position: 'bottom', offsetX: -10, offsetY: 0 } } }],
-//     series: [{
-//       name: 'HTML',
-//       data: [44, 55, 41, 67, 22, 43, 21, 49],
-//     }, {
-//       name: 'CSS',
-//       data: [13, 23, 20, 8, 13, 27, 33, 12],
-//     }, {
-//       name: 'JS',
-//       data: [11, 17, 15, 15, 21, 14, 15, 13],
-//     }, {
-//       name: 'MONGO',
-//       data: [13, 23, 20, 8, 13, 27, 33, 12],
-//     }, {
-//       name: 'REACT',
-//       data: [11, 17, 15, 15, 21, 14, 15, 13],
-//     }],
-  
-//     xaxis: {
-//       categories: ['2011 Q1', '2011 Q2', '2011 Q3', '2011 Q4', '2012 Q1', '2012 Q2', '2012 Q3', '2012 Q4'],
-//     },
-//     fill: {
-//       opacity: 1,
-//     },
-  
-//     legend: {
-//       position: 'right',
-//       offsetX: 0,
-//       offsetY: 50,
-//     },
-//   };
-  
-//   const chart = new ApexCharts(document.querySelector('#chart'), options);
-  
-//   chart.render();
