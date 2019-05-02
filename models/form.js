@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const formSchema = new Schema({
-  codingStatus: String,
-  getBetter: String,
+  codingStatus: { type: String, default: 'Fill your daily form and see your status here' },
+  getBetter: { type: String, default: 'Fill your daily form' },
   journal: String,
   usedTools: {
     htmlRange: Number,
