@@ -74,11 +74,9 @@ function showAnswer() {
 // LOGIC CHART
 function printTheChart(arrHtml, arrCSS, arrJS, arrMongo, arrReact, arrTime) {
   const options = {
-
-    chart: {
-      height: 350, type: 'bar', stacked: true,
-    },
-    responsive: [{ breakpoint: 480, options: { legend: { position: 'bottom', offsetX: -10, offsetY: 0 } } }],
+    colors: ['#81D4FA', '#03A9F4', '#008FFB', '#546E7A', '#2E294E'],
+    chart: { height: 350, type: 'bar', stacked: true },
+    responsive: [{ breakpoint: 480, options: { legend: { position: 'right', offsetX: 0, offsetY: 0 } } }],
     series: [{
       name: 'HTML',
       data: arrHtml,
@@ -97,17 +95,19 @@ function printTheChart(arrHtml, arrCSS, arrJS, arrMongo, arrReact, arrTime) {
     }],
 
     xaxis: {
-      categories: arrTime,
+      // categories: arrTime,
     },
     fill: {
       opacity: 1,
+      colors: ['#81D4FA', '#03A9F4', '#008FFB', '#546E7A', '#2E294E'],
     },
-
+    
     legend: {
       position: 'right',
-      offsetX: 0,
+      offsetX: -20,
       offsetY: 50,
     },
+    
   };
 
   // CONNECT TO FRONT
