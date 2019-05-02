@@ -93,6 +93,7 @@ router.get('/home', ensureAuthenticated, (req, res) => {
       const status = result[result.length - 1].codingStatus;
       const study = result[result.length - 1].getBetter;
       // console.log('>>>>>>>>>>>>>>>>>>', status);
+      // res.render('home', { obj: result, user: req.user });
       res.render('home', { obj: result, phrase: status, tool: study, user: req.user });
     })
     .catch((err) => {
