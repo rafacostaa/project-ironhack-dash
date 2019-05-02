@@ -1,3 +1,6 @@
+const User = require('../models/user.js');
+
+
 const express = require('express');
 
 const router = express.Router();
@@ -6,7 +9,6 @@ const Form = require('../models/form.js');
 
 const Qa = require('../models/qa.js');
 // const User = require('../models/user.js');
-
 /* GET log in page */
 router.get('/', (req, res) => {
   res.render('indexlogin', { layout: 'layout-login-signup.hbs' });
@@ -86,6 +88,7 @@ router.get('/home', ensureAuthenticated, (req, res) => {
       result.forEach((element) => {
         arrReact.push(element.usedTools.reactRange);
       });
+
       console.log('TESSSSSTE', arrReact);
       const status = result[result.length - 1].codingStatus;
       console.log('>>>>>>>>>>>>>>>>>>', status);
@@ -95,8 +98,6 @@ router.get('/home', ensureAuthenticated, (req, res) => {
       console.log(err);
     });
 });
-
-
 
 
   // Form.find()
