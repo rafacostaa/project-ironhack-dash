@@ -1,14 +1,11 @@
-const User = require('../models/user.js');
-
-
 const express = require('express');
 
 const router = express.Router();
 
+const User = require('../models/user.js');
 const Form = require('../models/form.js');
-
 const Qa = require('../models/qa.js');
-// const User = require('../models/user.js');
+
 /* GET log in page */
 router.get('/', (req, res) => {
   res.render('indexlogin', { layout: 'layout-login-signup.hbs' });
@@ -93,6 +90,7 @@ router.get('/home', ensureAuthenticated, (req, res) => {
       const status = result[result.length - 1].codingStatus;
       const study = result[result.length - 1].getBetter;
       // console.log('>>>>>>>>>>>>>>>>>>', status);
+      // res.render('home', { obj: result, user: req.user });
       res.render('home', { obj: result, phrase: status, tool: study, user: req.user });
     })
     .catch((err) => {
@@ -123,15 +121,22 @@ router.get('/home', ensureAuthenticated, (req, res) => {
 /* GET form page */
 router.get('/form', ensureAuthenticated, (req, res) => {
   console.log(req.user);
-  res.render('form');
+  res.render('form', { layout: 'layout-login-signup.hbs' });
 });
 
 /* GET account page */
-router.get('/account', ensureAuthenticated, (req, res, next) => {
-  User.find({ user: req.user._id})
-  .then(result)
-  res.render('account', {});
+router.get('/account', ensureAuthenticated, (req, res) => {
+  User.findById(req.user._id)
+    .then((result) => {
+      //console.log('account LOGGGGGGG', result);
+      res.render('account', { obj: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
+
+
 
 /* GET chart page */
 router.get('/chart', ensureAuthenticated, (req, res, next) => {
@@ -152,7 +157,7 @@ router.get('/timeline', (req, res) => {
 });
 
 
-/* GET account page */
+/* GET flashcard page */
 router.get('/flashcard', ensureAuthenticated, (req, res, next) => {
   Qa.find({ user: req.user._id})
     .then((result) => {
@@ -236,5 +241,27 @@ router.post('/flashcard', ensureAuthenticated, (req, res) => {
     });
 });
 
+router.post('/update', ensureAuthenticated, (req, res) => {
+  console.log('REQ-BODY>>>>>>>>>>>', req.body);
+  const { firstName, lastName, email } = req.body;
+  User.findOneAndUpdate({ _id: req.user._id }, { $set: { firstName, lastName, email } })
+    .then((result) => {
+      console.log('UPDATE>>>>>>>>>>', result);
+      res.redirect('/account');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
+router.get('/delete', ensureAuthenticated, (req, res) => {
+  User.findOneAndRemove({ _id: req.user._id })
+    .then(() => {
+      res.redirect('/');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
 
 module.exports = router;
