@@ -348,5 +348,13 @@ article > nav > ol > li {
 
 .aside-2 {
   color: whitesmoke; }
+#answer-text {
+  display: none; }
+
+.questionAndCards {
+  display: flex; }
+
+#qa-form, #qa-card {
+  flex-grow: 1; }
 
 /*# sourceMappingURL=style.css.map */

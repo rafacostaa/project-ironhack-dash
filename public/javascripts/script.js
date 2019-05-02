@@ -61,6 +61,18 @@ function newElement() {
   }
 }
 
+// Flash cards.
+
+function showAnswer() {
+  document.getElementById('answer-text').style.display = 'block';
+}
+
+
+
+
+
+
+
 // test chart
 // const options = {
 //   chart: { type: 'bar'},
