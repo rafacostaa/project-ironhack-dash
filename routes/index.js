@@ -23,11 +23,10 @@ function ensureAuthenticated(req, res, next) {
   res.redirect('/');
 }
 
+
 /* GET form page */
 router.get('/home', ensureAuthenticated, (req, res) => {
-  // console.log(req.user.firstName);
-  // res.render('form', { user: req.user });
-  Form.find({ user: req.user._id })
+  Form.find({ user: req.user._id})
     .then((result) => {
       const status = result[result.length - 1].codingStatus;
       const study = result[result.length - 1].getBetter;
@@ -66,8 +65,6 @@ router.get('/account', ensureAuthenticated, (req, res) => {
     });
 });
 
-
-
 /* GET chart page */
 router.get('/chart', ensureAuthenticated, (req, res, next) => {
   res.render('chart', { user: req.user });
@@ -75,11 +72,14 @@ router.get('/chart', ensureAuthenticated, (req, res, next) => {
 
 /* GET timeline page */
 router.get('/timeline', (req, res) => {
-  Form.find()
-    // .populate('user')
+  Form.find({ user: req.user._id }).lean()
     .then((result) => {
-      // console.log(result)
-      res.render('timeline', { form: result });
+      const resultMapped = result.map((o) => {
+        const objDate = new Date(o.createdAt);
+        o.dateParsed = `${objDate.getDate()}/${objDate.getMonth() + 1 }`;
+        return o;
+      });
+      res.render('timeline', { form: resultMapped });
     })
     .catch((err) => {
       console.log(err);
@@ -88,7 +88,7 @@ router.get('/timeline', (req, res) => {
 
 
 /* GET flashcard page */
-router.get('/flashcard', ensureAuthenticated, (req, res, next) => {
+router.get('/flashcard', ensureAuthenticated, (req, res) => {
   Qa.find({ user: req.user._id })
     .then((result) => {
       const ramdonObject = result[Math.round(Math.random() * (result.length))];
@@ -102,15 +102,20 @@ router.get('/flashcard', ensureAuthenticated, (req, res, next) => {
 
 /* GET journal page */
 router.get('/journal', ensureAuthenticated, (req, res) => {
-  Form.find({ user: req.user._id })
+  Form.find({ user: req.user._id }).lean()
     .then((result) => {
-      res.render('journal', { obj: result });
+      const resultMapped = result.map((o) => {
+        const objDate = new Date(o.createdAt);
+        o.dateParsed = `${objDate.getDate()}/${objDate.getMonth() + 1 }`;
+        return o;
+      });
+      res.render('journal', { form: resultMapped });
     })
     .catch((err) => {
       console.log(err);
     });
 });
-
+  
 
 /* POST form page */
 router.post('/form', ensureAuthenticated, (req, res) => {

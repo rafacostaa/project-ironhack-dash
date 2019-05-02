@@ -122,7 +122,8 @@ function printTheChart(arrHtml, arrCSS, arrJS, arrMongo, arrReact, arrTime) {
 window.onload = () => {
   axios.get('/chart')
     .then((result) => {
-      console.log(result.data);
+      // const date = result.data.createdAt;
+      // console.log(date);
       const arrHtml = [];
       result.data.forEach((element) => {
         arrHtml.push(element.usedTools.htmlRange);
@@ -145,6 +146,7 @@ window.onload = () => {
       });
       const arrTime = [];
       result.data.forEach((timestamps) => {
+        const date = timestamps.createdAt;
         arrTime.push(timestamps.createdAt);
       });
       printTheChart(arrHtml, arrCSS, arrJS, arrMongo, arrReact, arrTime);
