@@ -208,7 +208,8 @@ article > nav > ol > li {
   font-family: Roboto Mono, arial, tahoma, verdana;
   line-height: 20px;
   font-size: 14px;
-  color: #726f77; }
+  color: #726f77;
+  border: 1px solid blue; }
 
 .container-timeline {
   max-width: 1100px;
@@ -429,7 +430,7 @@ article > nav > ol > li {
 .navbar {
   align-items: center;
   background: #fff;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: space-between; }
 

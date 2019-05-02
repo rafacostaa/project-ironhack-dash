@@ -357,6 +357,7 @@ article > nav > ol > li {
   line-height: 20px;
   font-size: 14px;
   color: #726f77;
+  border: 1px solid blue;
 }
 
 
@@ -611,12 +612,11 @@ margin-top: 20px;
 .navbar {
   align-items: center;
   background: #fff;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  box-shadow: 0 5px 6px 0 rgba(0,0,0,.2);
   display: flex;
   justify-content: space-between;
 }
 
 .user-data{
   color: rgb(30, 36, 51);
-  font-weight: 
 }

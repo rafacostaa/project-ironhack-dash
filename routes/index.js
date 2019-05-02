@@ -3,7 +3,6 @@ const User = require('../models/user.js');
 
 const router = express.Router();
 
-const User = require('../models/user.js');
 const Form = require('../models/form.js');
 const Qa = require('../models/qa.js');
 
@@ -122,10 +121,10 @@ router.post('/form', ensureAuthenticated, (req, res) => {
 } = req.body;
   const questAns = { questionText, answerText };
   const usedTools = {
- htmlRange, cssRange, jsRange, mongoRange, reactRange 
+ htmlRange, cssRange, jsRange, mongoRange, reactRange,
 };
   const newForm = new Form({
- codingStatus, getBetter, questAns, journal, usedTools, user, timestamps 
+ codingStatus, getBetter, questAns, journal, usedTools, user, timestamps, 
 });
   newForm.save()
     .then(() => {
