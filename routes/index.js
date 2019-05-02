@@ -29,40 +29,9 @@ function ensureAuthenticated(req, res, next) {
   res.redirect('/');
 }
 
-/* GET home page */
-// router.get('/home/:id', ensureAuthenticated, (req, res) => {
-//   let userId = req.params.id;
-//   console.log(req.user, userId);
-//   User.findOne({'_id': userId})
-//   .populate('user')
-//   .then(x => {
-//     if (!x) {
-//         return res.status(404).render('not-found');
-//     }
-//     res.render("home", { x })
-//   })
-//   .catch(next)
-// });
-
-// /* GET home page */
-// router.get('/home', ensureAuthenticated, (req, res) => {
-
-//   console.log(req.user);
-//   res.render('home', { user: req.user });
-//   // User.findById()
-//   //   .then((result) => {
-//   //     res.render('home', { banana: result });
-//   //   })
-//   //   .catch((err) => {
-//   //     console.log(err);
-//   //   });
-// });
-
 
 /* GET form page */
 router.get('/home', ensureAuthenticated, (req, res) => {
-  // console.log(req.user.firstName);
-  // res.render('form', { user: req.user });
   Form.find({ user: req.user._id})
     .then((result) => {
       const arrHtml = [];
@@ -99,23 +68,6 @@ router.get('/home', ensureAuthenticated, (req, res) => {
 });
 
 
-  // Form.find()
-  //   .then((result) => {
-  //    switch(result[0].codingStatus) {
-  //      case 0 : document.getElementById('code-phrase').innerHtml = 'Baby coder => “ Now baby you are, persist and master will be."'
-  //    }
-    // })
-    //   res.render('journal', { obj: result });
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    // });
-  // const babyCoder = 'Baby coder => “ Now baby you are, persist and master will be."';
-  // const horseCoder = 'Horse Coder => “ Hard is to be a horse in a word of horseman. "';
-  // const codeWarrior = 'Code Warrior => “ A calm mind make a better warrior. "';
-  // const codeMaster = ' Code Master => “ Humbleness and learning are the master powerfull skill. "';
-  // const coderPhrase = document.getElementById('code-phrase');
-
 
 
 /* GET form page */
@@ -145,10 +97,8 @@ router.get('/chart', ensureAuthenticated, (req, res, next) => {
 
 /* GET timeline page */
 router.get('/timeline', (req, res) => {
-  Form.find()
-    // .populate('user')
+  Form.find({ user: req.user._id})
     .then((result) => {
-     // console.log(result)
       res.render('timeline', { form: result });
     })
     .catch((err) => {
@@ -174,6 +124,8 @@ router.get('/flashcard', ensureAuthenticated, (req, res, next) => {
 router.get('/journal', ensureAuthenticated, (req, res) => {
   Form.find({ user: req.user._id})
     .then((result) => {
+      console.log(result.createdAt);
+      // const date =  
       res.render('journal', { obj: result });
     })
     .catch((err) => {
@@ -181,32 +133,6 @@ router.get('/journal', ensureAuthenticated, (req, res) => {
     });
 });
   
-
-// /* GET home page */
-// router.get('/home', (req, res) => {
-  //   res.render('home');
-  // });
-  
-  // /* GET form page */
-  // router.get('/form', (req, res) => {
-    //   res.render('form');
-    // });
-    
-// /* GET account page */
-// router.get('/account', (req, res, next) => {
-//   res.render('account');
-// });
-
-// /* GET timeline page */
-// router.get('/timeline', (req, res) => {
-//   res.render('timeline');
-// });
-
-
-// /* GET account page */
-// router.get('/flashcard', (req, res, next) => {
-//   res.render('flashcard');
-// });
 
 /* POST form page */
 router.post('/form', ensureAuthenticated, (req, res) => {
