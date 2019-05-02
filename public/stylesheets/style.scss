@@ -500,3 +500,15 @@ article > nav > ol > li {
     left: 0;
   }
 }
+
+#answer-text {
+  display: none;
+}
+
+.questionAndCards {
+  display: flex;
+}
+
+#qa-form, #qa-card {
+  flex-grow: 1;
+}

@@ -1,25 +1,24 @@
 <div>
     <img class="mb-4" src="./images/logoIronHack.png" alt="logo IronHack" width="80px" height="80px">
     <h1 class="display-4">Flashcards</h1>
-<form action="/flashcard" method="POST">
-    <div class="form-group">
-        <h3>
-        <label class="label-text" for="exampleFormControlTextarea1">Good questions make you learn faster. Create a very good one for today and answer it.
-        </label>
-        </h3>
-        <textarea class="form-control" name="questionText" placeholder="Your Question" rows="3"></textarea>
-        <textarea class="form-control" name="answerText" placeholder="Your Answer" rows="3"></textarea>
-        <button id="submit-btn" class="btn btn-primary btn-lg" type="submit">Submit</button>
-    </div>
-</form>
+    <section class="questionAndCards">
+        <form id="qa-form"action="/flashcard" method="POST">
+            <div class="form-group">
+                <h3>
+                <label class="label-text" for="exampleFormControlTextarea1">Good questions make you learn faster. Create a very good one for today and answer it.
+                </label>
+                </h3>
+                <textarea class="form-control" name="questionText" placeholder="Your Question" rows="3"></textarea>
+                <textarea class="form-control" name="answerText" placeholder="Your Answer" rows="3"></textarea>
+                <button id="submit-btn" class="btn btn-primary btn-lg" type="submit">Submit</button>
+            </div>
+        </form>
 
-    <div class="jumbotron">
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Show answer</a>
-    </div>
-
-    <button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
-    <button type="button" class="btn btn-secondary">Secondary</button>
+        <div class="jumbotron" id="qa-card">
+            <p class="lead">{{rdnobj.questAns.questionText}}</p>
+            <hr class="my-4">
+            <p id="answer-text">{{rdnobj.questAns.answerText}}</p>
+            <a class="btn btn-primary btn-lg" id="show-answer" onclick="showAnswer()" href="#" role="button">Show answer</a>
+        </div>
+    </section>
 </div>

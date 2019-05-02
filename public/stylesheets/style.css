@@ -346,4 +346,13 @@ article > nav > ol > li {
   #timeline .timeline-item .timeline-icon {
     left: 0; } }
 
+#answer-text {
+  display: none; }
+
+.questionAndCards {
+  display: flex; }
+
+#qa-form, #qa-card {
+  flex-grow: 1; }
+
 /*# sourceMappingURL=style.css.map */

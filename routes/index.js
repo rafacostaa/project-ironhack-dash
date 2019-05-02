@@ -88,8 +88,9 @@ router.get('/home', ensureAuthenticated, (req, res) => {
       });
       console.log('TESSSSSTE', arrReact);
       const status = result[result.length - 1].codingStatus;
-      console.log('>>>>>>>>>>>>>>>>>>', status);
-      res.render('home', { obj: result, phrase: status });
+      const study = result[result.length - 1].getBetter;
+      // console.log('>>>>>>>>>>>>>>>>>>', status);
+      res.render('home', { obj: result, phrase: status, tool: study, user: req.user });
     })
     .catch((err) => {
       console.log(err);
@@ -152,8 +153,9 @@ router.get('/timeline', (req, res) => {
 router.get('/flashcard', ensureAuthenticated, (req, res, next) => {
   Qa.find({ user: req.user._id})
     .then((result) => {
-      console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$', result);
-      res.render('flashcard', { obj: result });
+      const ramdonObject = result[Math.round(Math.random() * (result.length))];
+      console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$', ramdonObject);
+      res.render('flashcard', { obj: result, rdnobj: ramdonObject });
     })
     .catch((err) => {
       console.log(err);
