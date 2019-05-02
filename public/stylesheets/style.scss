@@ -1,7 +1,17 @@
+// LIGHT BLUE
+// rgb(61, 196, 252);
+// DARK BLUE
+// rgb(30, 36, 51);
+
+// FONT
+// font-family: Roboto,arial,sans-serif;
+// font-family: Roboto Mono;
+
+
 
 *{
   margin: 0px;
-  // border: 1px solid red;
+  border: 1px solid red;
   font-family: Roboto,arial,sans-serif;
 }
 
@@ -73,13 +83,13 @@ body {
   flex-wrap: wrap;
 }
 
-h3 {
-  // margin-bottom: 3%;
-  // margin-top: 10%;
-  // font-size: 1.1em; 
-  /* font-weight: bolder; */
-  // color:	 rgb(30, 36, 51);
-}
+// h3 {
+//   // margin-bottom: 3%;
+//   // margin-top: 10%;
+//   // font-size: 1.1em; 
+//   /* font-weight: bolder; */
+//   // color:	 rgb(30, 36, 51);
+// }
 
 // ACCOUNT
 
@@ -169,14 +179,18 @@ h3 {
   height: 550px;
 }
 
-.aside-1 { background: whitesmoke; }
+.aside-1 { 
+  background: whitesmoke;
+  text-align: left;
+
+}
 
 .main {
   text-align: left;
   background: rgba(0, 110, 255, 0.459);
 }
 
-.aside-2 { background: grey; }
+.aside-2 { background:rgb(30, 36, 51)}
 
 
 /* PRECISA ARRUMAR A RESPONSIVIDADE */
@@ -214,9 +228,14 @@ h3 {
 }
 
 
+
 .flex-item > ul > li {
   list-style-type: none;
-  text-align: center;
+  text-align: left;
+}
+
+.flex-item > ul {
+  margin-top: 10px;
 }
 
 
@@ -348,7 +367,7 @@ article > nav > ol > li {
 
 
 .title-journal {
-  *border: 3px solid rgb(30, 36, 51);;
+  *border: 3px solid rgb(30, 36, 51);
   color: rgb(30, 36, 51);;
   margin-left:20%;
   margin-right:20%;
@@ -546,4 +565,58 @@ article > nav > ol > li {
 .error-message {
   background-color: red;
   color: whitesmoke;
+}
+
+
+// TO DO
+.list-class{
+width: 300px;
+}
+
+.aside-2 > ul {
+text-align: left;
+margin-top: 20px;
+}
+
+.aside-2 > div > input {
+  width: 300px;
+}
+
+
+.nav-link, .margin-buttons {
+  margin: 5px;
+}
+
+// .nav-link{ color: rgb(61, 196, 252)}
+
+.margin-buttons{ background-color: rgb(30, 36, 51)} 
+
+.margin-buttons:hover{ background-color: rgb(13, 16, 24)}
+
+.nav-link{ color: rgb(61, 196, 252)}
+.nav-link:hover{ color: rgb(70, 172, 216)}
+
+
+.link-button { background-color: rgb(61, 196, 252)}
+
+.link-button:hover { background-color: rgb(70, 172, 216)}
+
+// .menu-link{ color: rgb(13, 16, 24)};
+
+.addBtn {
+  background-color: rgb(70, 172, 216);
+
+}
+
+.navbar {
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-data{
+  color: rgb(30, 36, 51);
+  font-weight: 
 }

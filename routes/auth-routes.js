@@ -27,10 +27,10 @@ authRoutes.get('/signup', (req, res, next) => {
 // SIGN UP POST
 authRoutes.post('/signup', (req, res, next) => {
   const { firstName } = req.body;
-  const lastName = req.body.lastName;
-  const username = req.body.username;
-  const email = req.body.email;
-  const password = req.body.password;
+  const { lastName } = req.body;
+  const { username } = req.body;
+  const { email } = req.body;
+  const { password } = req.body;
 
   if (username === '' || password === '') {
     res.render('indexsignup', { message: 'Indicate username and password' });
