@@ -19,9 +19,9 @@ router.get('/', (req, res) => {
 // });
 
 
-router.get('/private', ensureAuthenticated, (req, res) => {
-  res.render('private', { user: req.user });
-});
+// router.get('/private', ensureAuthenticated, (req, res) => {
+//   res.render('private', { user: req.user });
+// });
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
