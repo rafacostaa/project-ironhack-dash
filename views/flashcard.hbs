@@ -1,24 +1,29 @@
-<div>
+<div class="form-flash">
     <img class="mb-4" src="./images/logoIronHack.png" alt="logo IronHack" width="80px" height="80px">
-    <h1 class="display-4">Flashcards</h1>
-    <section class="questionAndCards">
-        <form id="qa-form"action="/flashcard" method="POST">
-            <div class="form-group">
-                <h3>
-                <label class="label-text" for="exampleFormControlTextarea1">Good questions make you learn faster. Create a very good one for today and answer it.
-                </label>
-                </h3>
+    <h1>Flashcards</h1>
+</div>
+<h4 class="label-text" for="exampleFormControlTextarea1">Good questions make you learn faster. Create a very good one for today and answer it.
+</h4>
+<section>
+    <div class="form-flash">
+        <form id="qa-form" action="/flashcard" method="POST">
+            <div>
+                <h5>Register your new card here!</h5>
                 <textarea class="form-control" name="questionText" placeholder="Your Question" rows="3"></textarea>
                 <textarea class="form-control" name="answerText" placeholder="Your Answer" rows="3"></textarea>
-                <button id="submit-btn" class="btn btn-primary btn-lg" type="submit">Submit</button>
+                <button id="submit-btn" class="btn btn-primary btn-lg" type="submit">Register</button>
             </div>
         </form>
-
+    
         <div class="jumbotron" id="qa-card">
-            <p class="lead">{{rdnobj.questAns.questionText}}</p>
-            <hr class="my-4">
-            <p id="answer-text">{{rdnobj.questAns.answerText}}</p>
-            <a class="btn btn-primary btn-lg" id="show-answer" onclick="showAnswer()" href="#" role="button">Show answer</a>
+            <h5>Let's study!</h5>
+            <div>
+                <p class="lead">{{rdnobj.questAns.questionText}}</p>
+                <hr class="my-4">
+                <p id="answer-text">{{rdnobj.questAns.answerText}}</p>
+                <button class="btn btn-primary btn-lg" id="show-answer" onclick="showAnswer()" href="#" role="button">Show answer</button>
+            </div>
         </div>
-    </section>
-</div>
+    </div>
+</section>
+

@@ -1,10 +1,10 @@
 * {
-  margin: 0px; }
+  margin: 0px;
+  font-family: Roboto,arial,sans-serif; }
 
 body {
   color: #7e8591;
-  background-color: #f8f8f8;
-  font-family: Roboto,arial,sans-serif; }
+  background-color: #f8f8f8; }
 
 #chart {
   max-width: 650px;
@@ -346,13 +346,39 @@ article > nav > ol > li {
   #timeline .timeline-item .timeline-icon {
     left: 0; } }
 
+.aside-2 {
+  color: whitesmoke; }
+
 #answer-text {
   display: none; }
 
-.questionAndCards {
-  display: flex; }
-
 #qa-form, #qa-card {
   flex-grow: 1; }
+
+.form-flash {
+  display: flex;
+  padding-right: 40px; }
+
+.form-flash > img {
+  margin-top: 10px; }
+
+.form-flash > h1 {
+  margin: 25px 0 0 10px; }
+
+.form-flash > form > div {
+  margin-top: 40px;
+  padding: 30px; }
+
+.label-text {
+  margin-left: 10px; }
+
+.jumbotron {
+  margin-top: 20px;
+  height: 400px;
+  background-color: #f8f8f8;
+  padding: 30px; }
+
+.jumbotron > h5 {
+  margin: 22px 0 10px 0; }
 
 /*# sourceMappingURL=style.css.map */

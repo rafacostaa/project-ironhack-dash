@@ -2,13 +2,13 @@
 *{
   margin: 0px;
   // border: 1px solid red;
+  font-family: Roboto,arial,sans-serif;
 }
 
 body {
   // padding: 10%;
   color: rgb(126, 133, 145);
   background-color: rgb(248, 248, 248);
-  font-family: Roboto,arial,sans-serif;
 }
 
 #chart {
@@ -501,14 +501,48 @@ article > nav > ol > li {
   }
 }
 
+.aside-2 {
+  color: whitesmoke;
+}
+
+//FLASHCARD
 #answer-text {
   display: none;
 }
 
-.questionAndCards {
-  display: flex;
-}
-
 #qa-form, #qa-card {
   flex-grow: 1;
+}
+
+.form-flash {
+  display: flex;
+  padding-right: 40px;
+  
+}
+
+.form-flash > img {
+  margin-top: 10px;
+}
+
+.form-flash > h1 {
+  margin: 25px 0 0 10px;
+}
+
+.form-flash > form >div {
+  margin-top: 40px;
+  padding: 30px;
+}
+
+.label-text {
+  margin-left: 10px;
+}
+
+.jumbotron {
+  margin-top: 20px;
+  height: 400px;
+  background-color: rgb(248, 248, 248);
+  padding: 30px;
+}
+.jumbotron > h5 {
+  margin:22px 0 10px 0;
 }
