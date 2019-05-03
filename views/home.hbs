@@ -1,9 +1,11 @@
 <!-- DASH HEADER -->
 <ul class="flex-container">
     {{!-- BOX 1 --}}
+    <div></div>
+        {{!-- <img class="mb-4" src="./images/logoIronHack.png" alt="logo IronHack" width="50px" height="50px"> --}}
     <div class="flex-item">
         <ul>
-            <li>Infos</li>
+            <li class="user-info">Infos</li>
             <li class="user-data" id="name-card">First Name: {{user.firstName}}</li>
             <li class="user-data" id="name-card">Last Name: {{user.lastName}}</li>
             <li class="user-data" id="name-card">Email: {{user.email}}</li>  
@@ -15,7 +17,10 @@
         <h2>{{tool}}</h2>
     </div>
     {{!-- BOX 3 --}}
-    <div class="flex-item"></div>
+    <div class="msg phrase flex-item">
+        <h1>i.ron.hack.er</h1>
+        <h5>an organism that converts caffeine into code</h5>
+    </div>
 
 </ul>
 
@@ -65,8 +70,10 @@
     <aside class="aside aside-2">
         <div id="myDIV" class="header">
             <h5 class="font-Roboto">To Do List</h5>
-            <input type="text" id="myInput" placeholder="Title...">
-            <span onclick="newElement()" class="addBtn badge badge-dark font-Roboto">Add</span>
+            <div class="input-todo-div">
+                <input class="form-control mr-sm-2" type="text" id="myInput" placeholder="Title...">
+                <span onclick="newElement()" class="addBtn-todo badge badge-dark font-Roboto">Add</span>
+            </div>
         </div>
                 
         <ul id="myUL">

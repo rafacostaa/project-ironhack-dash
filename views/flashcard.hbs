@@ -1,29 +1,28 @@
-<div class="form-flash">
+<div class="form-flash-title">
     <img class="mb-4" src="./images/logoIronHack.png" alt="logo IronHack" width="80px" height="80px">
     <h1>Flashcards</h1>
 </div>
-<h4 class="label-text" for="exampleFormControlTextarea1">Good questions make you learn faster. Create a very good one for today and answer it.
+    <h4 class="label-text" for="exampleFormControlTextarea1">Good questions make you learn faster. Create a very good one for today and answer it.
 </h4>
+
 <section>
-    <div class="form-flash">
-        <form id="qa-form" action="/flashcard" method="POST">
-            <div>
-                <h5>Register your new card here!</h5>
-                <textarea class="form-control" name="questionText" placeholder="Your Question" rows="3"></textarea>
-                <textarea class="form-control" name="answerText" placeholder="Your Answer" rows="3"></textarea>
-                <button id="submit-btn" class="btn btn-primary btn-lg" type="submit">Save</button>
-            </div>
+    <div class="">
+        <form class="flash-card" id="qa-form" action="/flashcard" method="POST">
+            
+            <h5>Register your new card here!</h5>
+            <textarea class="form-control" name="questionText" placeholder="Your Question" rows="3"></textarea>
+            <textarea class="form-control" name="answerText" placeholder="Your Answer" rows="3"></textarea>
+            <button id="submit-btn" class="btn btn-primary btn-lg" type="submit">Save</button>
         </form>
     
-        <div class="jumbotron" id="qa-card">
+        <div class="flash-card jumbotron" id="qa-card">
             <h5>Let's study!</h5>
-            <div>
-                <p class="lead">{{rdnobj.questAns.questionText}}</p>
-                <hr class="my-4">
-                <p id="answer-text">{{rdnobj.questAns.answerText}}</p>
-                <button class="btn btn-primary btn-lg" id="show-answer" onclick="showAnswer()" href="#" role="button">Show answer</button>
-            </div>
+            <p class="timeline-card">{{rdnobj.questAns.questionText}}</p>
+            <hr class="my-4">
+            <p id="answer-text" class="timeline-card">{{rdnobj.questAns.answerText}}</p>
         </div>
+            <button class="btn-flash btn btn-primary btn-lg" id="show-answer" onclick="showAnswer()" href="#" >Show Answer</button>
+            <a class="btn btn-flash-pratic btn-lg" id="show-answer" onclick="" href="/flashcard" role="button">Pratice more</a>
     </div>
 </section>
 
