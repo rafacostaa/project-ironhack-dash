@@ -13,6 +13,11 @@ body {
 .selector-text[type=text] {
   color: #7e8591; }
 
+.phrase {
+  font-size: 23px;
+  font-style: italic;
+  margin-top: 10px; }
+
 #pag-title {
   color: #1e2433;
   font-family: Roboto Mono;
@@ -517,7 +522,7 @@ article > nav > ol > li {
 .blockquote > p {
   font-size: 20px;
   color: #1e2433; }
-  
+
 .card-limited {
   width: 50ch;
   overflow: hidden;
