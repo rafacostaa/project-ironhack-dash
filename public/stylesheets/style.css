@@ -489,4 +489,10 @@ article > nav > ol > li {
 .title-general {
   margin: 5px; }
 
+.card-limited {
+  width: 50ch;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+
 /*# sourceMappingURL=style.css.map */

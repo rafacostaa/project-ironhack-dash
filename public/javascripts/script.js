@@ -64,7 +64,6 @@ function newElement() {
 
 
 // Flash cards.
-
 function showAnswer() {
   document.getElementById('answer-text').style.display = 'block';
 }
@@ -72,7 +71,7 @@ function showAnswer() {
 // CHARTS
 
 // LOGIC CHART
-function printTheChart(arrHtml, arrCSS, arrJS, arrMongo, arrReact, arrTime) {
+function printTheChart(arrHtml, arrCSS, arrJS, arrMongo, arrReact) {
   const options = {
     colors: ['#81D4FA', '#03A9F4', '#008FFB', '#546E7A', '#2E294E'],
     chart: { height: 350, type: 'bar', stacked: true },
@@ -101,13 +100,11 @@ function printTheChart(arrHtml, arrCSS, arrJS, arrMongo, arrReact, arrTime) {
       opacity: 1,
       colors: ['#81D4FA', '#03A9F4', '#008FFB', '#546E7A', '#2E294E'],
     },
-    
     legend: {
       position: 'right',
       offsetX: -20,
       offsetY: 50,
     },
-    
   };
 
   // CONNECT TO FRONT
@@ -156,3 +153,9 @@ window.onload = () => {
     });
 };
 
+
+// Random Prhases
+const phArr = ['All computers wait at the same speed', 'A computer program does what you tell it to do, not what you want it to do', 'Chuck Norris counted to infinity ... twice', 'First solve the problem, then write the code', 'Keyboard not found, press any key to continue', 'There is no place like 127.0.0.1', 'Weeks of coding can save you hours of planning', 'There is no test like production'];
+
+const prhase = phArr[Math.floor(Math.random() * phArr.length)];
+document.getElementById('box3').innerHTML = prhase;

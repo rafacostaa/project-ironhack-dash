@@ -14,17 +14,6 @@ const logger = require('morgan');
 const path = require('path');
 const User = require('./models/user');
 
-// Mongoose configuration
-// mongoose.Promise = Promise;
-// mongoose
-//   .connect('mongodb://localhost/auth-database', { useMongoClient: true })
-//   .then(() => {
-//     console.log('Connected to Mongo!');
-//   }).catch((err) => {
-//     console.error('Error connecting to mongo', err);
-//   });
-
-
 mongoose
   .connect('mongodb://localhost/auth-database', { useNewUrlParser: true })
   .then((x) => {
@@ -34,12 +23,10 @@ mongoose
     console.error('Error connecting to mongo', err);
   });
 
-  
-  const app_name = require('./package.json').name;
-  const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
-  
-  const app = express();
-  
+const app_name = require('./package.json').name;
+const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`); 
+const app = express();
+
 // Middleware Setup
 // passport middleware
 app.use(session({
@@ -100,10 +87,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 hbs.registerPartials(__dirname + '/views/partials');
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'logoIronHack.png')));
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Iron Dash';
 
 const index = require('./routes/index');
 
