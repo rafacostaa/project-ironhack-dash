@@ -393,9 +393,6 @@ article > nav > ol > li {
   background-color: red;
   color: whitesmoke; }
 
-.list-class {
-  width: 300px; }
-
 .aside-2 > ul {
   text-align: left;
   margin: 20px 0 0 10px; }
@@ -508,7 +505,7 @@ article > nav > ol > li {
   border-radius: 10px;
   box-shadow: 0 10px 6px 0 rgba(0, 0, 0, 0.2);
   margin: 10px 50px;
-  height: 250px;
+  height: 100%;
   padding: 30px; }
 
 .card-header {
