@@ -70,7 +70,7 @@ authRoutes.post('/signup', (req, res, next) => {
 });
 
 // LOGIN GET
-authRoutes.get('/', (req, res, next) => {
+authRoutes.get('/', (req, res) => {
   res.render('indexlogin', { layout: 'layout-login-signup.hbs' });
   // res.render('indexlogin');
 });

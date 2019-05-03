@@ -11,11 +11,6 @@ router.get('/', (req, res) => {
   res.render('indexlogin', { layout: 'layout-login-signup.hbs' });
 });
 
-
-// router.get('/private', ensureAuthenticated, (req, res) => {
-//   res.render('private', { user: req.user });
-// });
-
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
@@ -49,7 +44,6 @@ router.get('/chart', ensureAuthenticated, (req, res) => {
 
 /* GET form page */
 router.get('/form', ensureAuthenticated, (req, res) => {
-  console.log(req.user);
   res.render('form', { layout: 'layout-login-signup.hbs' });
 });
 
@@ -57,7 +51,6 @@ router.get('/form', ensureAuthenticated, (req, res) => {
 router.get('/account', ensureAuthenticated, (req, res) => {
   User.findById(req.user._id)
     .then((result) => {
-      //console.log('account LOGGGGGGG', result);
       res.render('account', { obj: result });
     })
     .catch((err) => {
@@ -66,7 +59,7 @@ router.get('/account', ensureAuthenticated, (req, res) => {
 });
 
 /* GET chart page */
-router.get('/chart', ensureAuthenticated, (req, res, next) => {
+router.get('/chart', ensureAuthenticated, (req, res) => {
   res.render('chart', { user: req.user });
 });
 
@@ -92,7 +85,6 @@ router.get('/flashcard', ensureAuthenticated, (req, res) => {
   Qa.find({ user: req.user._id })
     .then((result) => {
       const ramdonObject = result[Math.round(Math.random() * (result.length))];
-      console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$', ramdonObject);
       res.render('flashcard', { obj: result, rdnobj: ramdonObject });
     })
     .catch((err) => {
@@ -115,22 +107,19 @@ router.get('/journal', ensureAuthenticated, (req, res) => {
       console.log(err);
     });
 });
-  
 
 /* POST form page */
 router.post('/form', ensureAuthenticated, (req, res) => {
-  console.log(req.user);
   const user = req.user._id;
   const {
- codingStatus, getBetter, questionText, answerText, journal, htmlRange, cssRange, jsRange, mongoRange, reactRange, timestamps 
-} = req.body;
+    codingStatus, getBetter, questionText, answerText, journal, htmlRange, cssRange, jsRange, mongoRange, reactRange, timestamps } = req.body;
   const questAns = { questionText, answerText };
   const usedTools = {
- htmlRange, cssRange, jsRange, mongoRange, reactRange,
-};
+    htmlRange, cssRange, jsRange, mongoRange, reactRange,
+  };
   const newForm = new Form({
- codingStatus, getBetter, questAns, journal, usedTools, user, timestamps, 
-});
+    codingStatus, getBetter, questAns, journal, usedTools, user, timestamps, 
+  });
   newForm.save()
     .then(() => {
       res.redirect('home');
@@ -156,12 +145,11 @@ router.post('/flashcard', ensureAuthenticated, (req, res) => {
     });
 });
 
+/* UPDATE User  */
 router.post('/update', ensureAuthenticated, (req, res) => {
-  console.log('REQ-BODY>>>>>>>>>>>', req.body);
   const { firstName, lastName, email } = req.body;
   User.findOneAndUpdate({ _id: req.user._id }, { $set: { firstName, lastName, email } })
-    .then((result) => {
-      console.log('UPDATE>>>>>>>>>>', result);
+    .then(() => {
       res.redirect('/account');
     })
     .catch((error) => {
@@ -169,6 +157,7 @@ router.post('/update', ensureAuthenticated, (req, res) => {
     });
 });
 
+/* DELETE USER */
 router.get('/delete', ensureAuthenticated, (req, res) => {
   User.findOneAndRemove({ _id: req.user._id })
     .then(() => {

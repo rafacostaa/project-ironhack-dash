@@ -754,3 +754,10 @@ margin: 5px 0;
   font-size: 20px;
   color:rgb(30, 36, 51);
 } 
+
+.card-limited {
+  width: 50ch;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

@@ -517,5 +517,11 @@ article > nav > ol > li {
 .blockquote > p {
   font-size: 20px;
   color: #1e2433; }
+  
+.card-limited {
+  width: 50ch;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
 
 /*# sourceMappingURL=style.css.map */
